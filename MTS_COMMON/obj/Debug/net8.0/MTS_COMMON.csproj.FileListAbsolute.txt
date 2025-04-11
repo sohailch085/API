@@ -1,0 +1,13 @@
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\bin\Debug\net8.0\MTS_COMMON.deps.json
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\bin\Debug\net8.0\MTS_COMMON.dll
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\bin\Debug\net8.0\MTS_COMMON.pdb
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.csproj.AssemblyReference.cache
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.GeneratedMSBuildEditorConfig.editorconfig
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.AssemblyInfoInputs.cache
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.AssemblyInfo.cs
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.csproj.CoreCompileInputs.cache
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.sourcelink.json
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.dll
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\refint\MTS_COMMON.dll
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\MTS_COMMON.pdb
+F:\SOHAIL\SOHAIL\API\MTS_COMMON\obj\Debug\net8.0\ref\MTS_COMMON.dll
