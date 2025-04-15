@@ -16,12 +16,38 @@ namespace MTS.API.Controllers.IEC
             _IECInterface = ecinterface;
         }
         [HttpGet]
-        [Route("GetIECInductorsTransformersAndCoils")]
-        public JsonResult GetIECInductorsTransformersAndCoils()
+        [Route("GetIECInductorsTransformersAndCoilsSubCategory")]
+        public JsonResult GetIECInductorsTransformersAndCoilsSubCategory()
         {
             try
             {
-                var result = _IECInterface.GetIECInductorsTransformersAndCoils();
+                var result = _IECInterface.GetIECInductorsTransformersAndCoilsSubCategory();
+
+                if (result == null || !result.Any())
+                {
+                    return new JsonResult(new { message = MessageInfo.Null });
+                }
+                return new JsonResult(new
+                {
+                    message = MessageInfo.Retrieved,
+                    data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    message = MessageInfo.Error + ex.Message
+                });
+            }
+        }
+        [HttpGet]
+        [Route("GetIECInductorsTransformersAndCoilsType")]
+        public JsonResult GetIECInductorsTransformersAndCoilsType(int SubCategoryId)
+        {
+            try
+            {
+                var result = _IECInterface.GetIECInductorsTransformersAndCoilsType(SubCategoryId);
 
                 if (result == null || !result.Any())
                 {
@@ -43,24 +69,20 @@ namespace MTS.API.Controllers.IEC
         }
         [HttpPost]
         [Route("ExecuteSPIECInductorsTransformersAndCoils")]
-        public async Task<ActionResult> ExecuteSPIECInductorsTransformersAndCoils([FromBody] IECInductorsTransformersAndCoilsCollectionDto request)
+        public async Task<JsonResult> ExecuteSPIECInductorsTransformersAndCoils(IECInductorsTransformersAndCoilsCollectionDto request)
         {
             try
             {
                 var result = await _IECInterface.ExecuteSPIECInductorsTransformersAndCoils
                     (
-                        request.TransformersType,
-                        request.OperatingFrequencyMHz,
-                        request.MaximumOperatingFrequencyMHz,
-                        request.WorstCasePowerDissipationAtMaximumFrequencyW,
-                        request.MaximumSupplyCurrentA,
-                        request.NominalVoltage,
-                        request.ThermalResistance,
+                        request.SubCategoryId,
+                        request.TypeId,
+                        request.DeltaT,
                         request.AmbientTemperature,
                         request.LambdaRef
                     );
 
-                return Ok(new
+                return new JsonResult(new
                 {
                     message = MessageInfo.Retrieved,
                     data = result
@@ -69,7 +91,7 @@ namespace MTS.API.Controllers.IEC
             catch (Exception ex)
             {
 
-                return Ok(new
+                return new JsonResult(new
                 {
                     message = MessageInfo.Error + ex.Message
                 });

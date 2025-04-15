@@ -34,11 +34,10 @@ namespace MTS_DAL.DBContextRepository
         public DbSet<IECDiscreteSemiconductorsSubcategory> IECDiscreteSemiconductorsSubcategory { get; set; }
         public DbSet<IECConstantsForTemperatureDependenceOfDiscreteSemiconductors> IECConstantsForTemperatureDependenceOfDiscreteSemiconductors { get; set; }
         public DbSet<IECPredictionDiscreteSemiconductors> IECPredictionDiscreteSemiconductors { get; set; }
-        public DbSet<IECOptoelectronicComponents> IECOptoelectronicComponents { get; set; }
+        public DbSet<IECOptoelectronicComponentsTypes> IECOptoelectronicComponentsTypes { get; set; }
         public DbSet<IECOptoelectronicComponentsSubCategory> IECOptoelectronicComponentsSubCategory { get; set; }
         public DbSet<IECConstantsForTemperatureDependenceOfOptoelectronicComponents> IECConstantsForTemperatureDependenceOfOptoelectronicComponents { get; set; }
         public DbSet<IECPredictionOptoelectronicComponent> IECPredictionOptoelectronicComponent { get; set; }
-        public DbSet<IECInductorsTransformersAndCoils> IECInductorsTransformersAndCoils { get; set; }
         public DbSet<IECPredictionInductorsTransformersAndCoils> IECPredictionInductorsTransformersAndCoils { get; set; }
         public DbSet<IECTypeComponent> IECTypeComponent { get; set; }
         public DbSet<IECTypeComponentSubCategory> IECTypeComponentSubCategory { get; set; }
@@ -58,6 +57,8 @@ namespace MTS_DAL.DBContextRepository
         public DbSet<IECPredictionRelays> IECPredictionRelays { get; set; }
         public DbSet<IECSwitchesAndPushButtonsForLowElectricalStress> IECSwitchesAndPushButtonsForLowElectricalStress { get; set; }
         public DbSet<IECPredictionSwitchesAndPushButtonsForLowElectricalStress> IECPredictionSwitchesAndPushButtonsForLowElectricalStress { get; set; }
+        public DbSet<IECInductorsTransformersAndCoilsSubCategory> IECInductorsTransformersAndCoilsSubCategory { get; set; }
+        public DbSet<IECInductorsTransformersAndCoilsTypes> IECInductorsTransformersAndCoilsTypes { get; set; }
 
         #endregion
         //starting pint
@@ -99,14 +100,13 @@ namespace MTS_DAL.DBContextRepository
             IECConstantsForVoltageDependenceOfCapacitors = _context.Set<IECConstantsForVoltageDependenceOfCapacitor>();
             IECConstantsForTemperatureDependenceOfCapacitors = _context.Set<IECConstantsForTemperatureDependenceOfCapacitor>();
             IECPredictionDiscreteSemiconductors = _context.Set<IECPredictionDiscreteSemiconductors>();
-            IECOptoelectronicComponents = _context.Set<IECOptoelectronicComponents>();
+            IECOptoelectronicComponentsTypes = _context.Set<IECOptoelectronicComponentsTypes>();
             IECOptoelectronicComponentsSubCategory = _context.Set<IECOptoelectronicComponentsSubCategory>();
             IECConstantsForTemperatureDependenceOfOptoelectronicComponents = _context.Set<IECConstantsForTemperatureDependenceOfOptoelectronicComponents>();
             IECDiscreteSemiconductors = _context.Set<IECDiscreteSemiconductors>();
             IECDiscreteSemiconductorsSubcategory = _context.Set<IECDiscreteSemiconductorsSubcategory>();
             IECConstantsForTemperatureDependenceOfDiscreteSemiconductors = _context.Set<IECConstantsForTemperatureDependenceOfDiscreteSemiconductors>();
             IECPredictionOptoelectronicComponent = _context.Set<IECPredictionOptoelectronicComponent>();
-            IECInductorsTransformersAndCoils = _context.Set<IECInductorsTransformersAndCoils>();
             IECPredictionInductorsTransformersAndCoils = _context.Set<IECPredictionInductorsTransformersAndCoils>();
             IECTypeComponent =_context.Set<IECTypeComponent>();
             IECTypeComponentSubCategory = _context.Set<IECTypeComponentSubCategory>();
@@ -127,8 +127,10 @@ namespace MTS_DAL.DBContextRepository
             IECPredictionRelays = _context.Set<IECPredictionRelays>();
             IECSwitchesAndPushButtonsForLowElectricalStress = _context.Set<IECSwitchesAndPushButtonsForLowElectricalStress>();
             IECPredictionSwitchesAndPushButtonsForLowElectricalStress = _context.Set<IECPredictionSwitchesAndPushButtonsForLowElectricalStress>();
+            IECInductorsTransformersAndCoilsSubCategory = _context.Set<IECInductorsTransformersAndCoilsSubCategory>();
+            IECInductorsTransformersAndCoilsTypes = _context.Set<IECInductorsTransformersAndCoilsTypes>();
 
-            R2Capacitor=_context.Set<R2Capacitor>();
+            R2Capacitor =_context.Set<R2Capacitor>();
             R2Diode = _context.Set<R2Diode>();
             R2IntegratedCircuitsPlasticEncapsulatedPackageType = _context.Set<R2IntegratedCircuitsPlasticEncapsulatedPackageType>();
             R2IntegratedCircuitsPlasticEncapsulatedPartType = _context.Set<R2IntegratedCircuitsPlasticEncapsulatedPartType>();

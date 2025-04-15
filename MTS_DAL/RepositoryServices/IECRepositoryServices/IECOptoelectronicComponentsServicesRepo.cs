@@ -45,9 +45,9 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
             }
         }
 
-        public async Task<List<IECOptoelectronicComponentsResponseDto>> ExecuteIECOptoelectronicComponents(int OptoelectronicTypes, int OptoelectronicComponentsSubCategory, int ConstantsType, double OperatingVoltageInV, double ReferenceVoltageInV, double RatedVoltageInV, double OperatingFrequencyMHz, double MaximumOperatingFrequencyMHz, double WorstCasePowerDissipationAtMaximumFrequencyW, double MaximumSupplyCurrentA, double NominalVoltage, double ThermalResistance, double AmbientTemperature, double LambdaRef)
+        public async Task<List<IECOptoelectronicComponentsResponseDto>> ExecuteIECOptoelectronicComponents(int TypesId, int SubCategoryId, double OperatingVoltageInV, double ReferenceVoltageInV, double RatedVoltageInV, double Fop, double Fmax, double Pfwc, double MaximumSupplyCurrentA, double NominalVoltage, double ThermalResistance, double AmbientTemperature, double LambdaRef)
         {
-            var result = await _dbcontextRepo.Database.SqlQueryRaw<IECOptoelectronicComponentsResponseDto>("EXEC procedure_IEC_Optoelectronic_components " + OptoelectronicTypes + "," + OptoelectronicComponentsSubCategory + "," + ConstantsType + "," + OperatingVoltageInV + "," + ReferenceVoltageInV + "," + RatedVoltageInV + "," + OperatingFrequencyMHz + "," + MaximumOperatingFrequencyMHz + "," + WorstCasePowerDissipationAtMaximumFrequencyW + "," + MaximumSupplyCurrentA + "," + NominalVoltage + "," + ThermalResistance + "," + AmbientTemperature + "," + LambdaRef + "").ToListAsync();
+            var result = await _dbcontextRepo.Database.SqlQueryRaw<IECOptoelectronicComponentsResponseDto>("EXEC procedure_IEC_Optoelectronic_components " + TypesId + "," + SubCategoryId + "," + OperatingVoltageInV + "," + ReferenceVoltageInV + "," + RatedVoltageInV + "," + Fop + "," + Fmax + "," + Pfwc + "," + MaximumSupplyCurrentA + "," + NominalVoltage + "," + ThermalResistance + "," + AmbientTemperature + "," + LambdaRef + "").ToListAsync();
             return result;
         }
 
@@ -57,15 +57,15 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
             return result;
         }
 
-        public List<IECOptoelectronicComponents> GetIECOptoelectronicComponents()
+        public List<IECOptoelectronicComponentsTypes> GetIECOptoelectronicComponentsTypes(int SubCategoryId)
         {
-            var result = _dbcontextRepo.container.IECOptoelectronicComponents.ToList();
+            var result = _dbcontextRepo.container.IECOptoelectronicComponentsTypes.Where(x=> x.SubCategoryId== SubCategoryId).ToList();
             return result;
         }
 
-        public async Task<List<IECOptoelectronicComponentsSubCategory>> GetIECOptoelectronicComponentsSubCategory(int SubCategoryId)
+        public async Task<List<IECOptoelectronicComponentsSubCategory>> GetIECOptoelectronicComponentsSubCategory()
         {
-            var result = await _dbcontextRepo.container.IECOptoelectronicComponentsSubCategory.Where(x => x.ComponentsSubCategoryId == SubCategoryId).ToListAsync();
+            var result = await _dbcontextRepo.container.IECOptoelectronicComponentsSubCategory.ToListAsync();
             return result;
         }
 
@@ -90,15 +90,14 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
                     exists.Trid=OptoelectronicComponent.Trid;
                     exists.PROJECTid = OptoelectronicComponent .PROJECTid;
                     exists.WBS = OptoelectronicComponent .WBS;
-                    exists.OptoelectronicTypes = OptoelectronicComponent .OptoelectronicTypes;
-                    exists.OptoelectronicComponentsSubCategory = OptoelectronicComponent .OptoelectronicComponentsSubCategory;
-                    exists.ConstantsTypeId = OptoelectronicComponent .ConstantsTypeId;
+                    exists.TypesId = OptoelectronicComponent .TypesId;
+                    exists.SubCategoryId = OptoelectronicComponent .SubCategoryId;
                     exists.OperatingVoltageInV = OptoelectronicComponent .OperatingVoltageInV;
                     exists.ReferenceVoltageInV = OptoelectronicComponent .ReferenceVoltageInV;
                     exists.RatedVoltageInV = OptoelectronicComponent .RatedVoltageInV;
-                    exists.OperatingFrequencyMHz = OptoelectronicComponent .OperatingFrequencyMHz;
-                    exists.MaximumOperatingFrequencyMHz = OptoelectronicComponent .MaximumOperatingFrequencyMHz;
-                    exists.WorstCasePowerDissipationAtMaximumFrequencyW = OptoelectronicComponent .WorstCasePowerDissipationAtMaximumFrequencyW;
+                    exists.Fop = OptoelectronicComponent .Fop;
+                    exists.Fmax = OptoelectronicComponent .Fmax;
+                    exists.Pfwc = OptoelectronicComponent .Pfwc;
                     exists.MaximumSupplyCurrentA = OptoelectronicComponent .MaximumSupplyCurrentA;
                     exists.NominalVoltage = OptoelectronicComponent .NominalVoltage;
                     exists.ThermalResistance = OptoelectronicComponent .ThermalResistance;
@@ -122,15 +121,14 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
                     {
                         PROJECTid = OptoelectronicComponent.PROJECTid,
                         WBS = OptoelectronicComponent.WBS,
-                        OptoelectronicTypes = OptoelectronicComponent.OptoelectronicTypes,
-                        OptoelectronicComponentsSubCategory = OptoelectronicComponent.OptoelectronicComponentsSubCategory,
-                        ConstantsTypeId = OptoelectronicComponent.ConstantsTypeId,
+                        TypesId = OptoelectronicComponent.TypesId,
+                        SubCategoryId = OptoelectronicComponent.SubCategoryId,
                         OperatingVoltageInV = OptoelectronicComponent.OperatingVoltageInV,
                         ReferenceVoltageInV = OptoelectronicComponent.ReferenceVoltageInV,
                         RatedVoltageInV = OptoelectronicComponent.RatedVoltageInV,
-                        OperatingFrequencyMHz = OptoelectronicComponent.OperatingFrequencyMHz,
-                        MaximumOperatingFrequencyMHz = OptoelectronicComponent.MaximumOperatingFrequencyMHz,
-                        WorstCasePowerDissipationAtMaximumFrequencyW = OptoelectronicComponent.WorstCasePowerDissipationAtMaximumFrequencyW,
+                        Fop = OptoelectronicComponent.Fop,
+                        Fmax = OptoelectronicComponent.Fmax,
+                        Pfwc = OptoelectronicComponent.Pfwc,
                         MaximumSupplyCurrentA = OptoelectronicComponent.MaximumSupplyCurrentA,
                         NominalVoltage = OptoelectronicComponent.NominalVoltage,
                         ThermalResistance = OptoelectronicComponent.ThermalResistance,

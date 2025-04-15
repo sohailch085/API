@@ -37,11 +37,10 @@ namespace MTS_BAL.Services
             //throw new NotImplementedException();
         }
 
-        public async Task<List<IECOptoelectronicComponentsResponseDto>> ExecuteIECOptoelectronicComponents(int OptoelectronicTypes, int OptoelectronicComponentsSubCategory, int ConstantsType, double OperatingVoltageInV, double ReferenceVoltageInV, double RatedVoltageInV, double OperatingFrequencyMHz, double MaximumOperatingFrequencyMHz, double WorstCasePowerDissipationAtMaximumFrequencyW, double MaximumSupplyCurrentA, double NominalVoltage, double ThermalResistance, double AmbientTemperature, double LambdaRef)
+        public async Task<List<IECOptoelectronicComponentsResponseDto>> ExecuteIECOptoelectronicComponents(int TypesId, int SubCategoryId, double OperatingVoltageInV, double ReferenceVoltageInV, double RatedVoltageInV, double Fop, double Fmax, double Pfwc, double MaximumSupplyCurrentA, double NominalVoltage, double ThermalResistance, double AmbientTemperature, double LambdaRef)
         {
-            var result = await _IECOptoelectronicComponentsInterfaceRepo.ExecuteIECOptoelectronicComponents(OptoelectronicTypes, OptoelectronicComponentsSubCategory, ConstantsType, OperatingVoltageInV, ReferenceVoltageInV, RatedVoltageInV, OperatingFrequencyMHz, MaximumOperatingFrequencyMHz, WorstCasePowerDissipationAtMaximumFrequencyW, MaximumSupplyCurrentA, NominalVoltage, ThermalResistance, AmbientTemperature, LambdaRef);
+            var result = await _IECOptoelectronicComponentsInterfaceRepo.ExecuteIECOptoelectronicComponents(TypesId, SubCategoryId, OperatingVoltageInV, ReferenceVoltageInV, RatedVoltageInV, Fop, Fmax, Pfwc, MaximumSupplyCurrentA, NominalVoltage, ThermalResistance, AmbientTemperature, LambdaRef);
             return result;
-            // throw new NotImplementedException();
         }
 
         public async Task<List<IECResistorsAndResistorNetworksResponseDto>> ExecuteIECResistorsAndResistorNetworks(int ResistorType, int InputType, double OperatingTemperature, double ThetaMax, double AmbiantTemperature, double LambdaRef)
@@ -51,9 +50,9 @@ namespace MTS_BAL.Services
             //throw new NotImplementedException();
         }
 
-        public async Task<List<IECInductorsTransformersAndCoilsResponseDto>> ExecuteSPIECInductorsTransformersAndCoils(int TransformersType, double OperatingFrequencyMHz, double MaximumOperatingFrequencyMHz, double WorstCasePowerDissipationAtMaximumFrequencyW, double MaximumSupplyCurrentA, double NominalVoltage, double ThermalResistance, double AmbientTemperature, double LambdaRef)
+        public async Task<List<IECInductorsTransformersAndCoilsResponseDto>> ExecuteSPIECInductorsTransformersAndCoils(int SubCategoryId, int TypeId, double DeltaT, double AmbientTemperature, double LambdaRef)
         {
-            var final = await _IECInductorsTransformersAndCoilsInterfaceRepo.ExecuteSPIECInductorsTransformersAndCoils(TransformersType, OperatingFrequencyMHz, MaximumOperatingFrequencyMHz, WorstCasePowerDissipationAtMaximumFrequencyW, MaximumSupplyCurrentA, NominalVoltage, ThermalResistance, AmbientTemperature, LambdaRef);
+            var final = await _IECInductorsTransformersAndCoilsInterfaceRepo.ExecuteSPIECInductorsTransformersAndCoils(SubCategoryId, TypeId, DeltaT, AmbientTemperature, LambdaRef);
             return final;
             //throw new NotImplementedException();
         }
@@ -139,29 +138,6 @@ namespace MTS_BAL.Services
             //throw new NotImplementedException();
         }
 
-        //public async Task<List<IECConstantsForTemperatureDependenceOfCapacitorsDto>> GetIECConstantsForTemperatureDependenceOfCapacitors()
-        //{
-        //    var result = await _IECCapacitorsInterface.GetIECConstantsForTemperatureDependenceOfCapacitors();
-        //    var final =result.Select (c => new IECConstantsForTemperatureDependenceOfCapacitorsDto
-        //    {
-        //        Trid= c.Trid,
-        //        CapacitorComponent=c.CapacitorComponent
-        //    }).ToList();
-        //    return final;
-        //   // throw new NotImplementedException();
-        //}
-
-        //public List<IECConstantsForTemperatureDependenceOfDiscreteSemiconductorsDto> GetIECConstantsForTemperatureDependenceOfDiscreteSemiconductors()
-        //{
-        //    var result = _IECDiscreteSemiconductorsInterfaceRepo.GetIECConstantsForTemperatureDependenceOfDiscreteSemiconductors();
-        //    //var final = result.Select(c => new IECConstantsForTemperatureDependenceOfDiscreteSemiconductorsDto
-        //    //{
-        //    //    Trid = c.Trid,
-        //    //    ConstantsType = c.ConstantsType
-        //    //}).ToList();
-        //    return null; //final;
-        //}
-
         public List<IECConstantsForTemperatureDependenceOfOptoelectronicComponentsDto> GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents()
         {
             var result = _IECOptoelectronicComponentsInterfaceRepo.GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents();
@@ -186,19 +162,6 @@ namespace MTS_BAL.Services
             // throw new NotImplementedException();
         }
 
-        //public async Task<List<IECConstantForVoltageDependenceCapacitorsDto>> GetIECConstantsForVoltageDependenceOfCapacitors()
-        //{
-        //    var result =await _IECCapacitorsInterface.GetIECConstantsForVoltageDependenceOfCapacitors();
-
-        //    var Final = result.Select(c => new IECConstantForVoltageDependenceCapacitorsDto
-        //    {
-        //        Trid = c.Trid,
-        //        CapacitorType = c.CapacitorType
-        //    }).ToList();
-        //    return Final;
-        //   // throw new NotImplementedException();
-        //}
-
         public List<IECDiscreteSemiconductors> GetIECDiscreteSemiconductors()
         {
             var result = _IECDiscreteSemiconductorsInterfaceRepo.GetIECDiscreteSemiconductors();
@@ -217,32 +180,25 @@ namespace MTS_BAL.Services
             //throw new NotImplementedException();
         }
 
-        public List<IECInductorsTransformersAndCoilsDto> GetIECInductorsTransformersAndCoils()
+        public List<IECOptoelectronicComponentsTypesDto> GetIECOptoelectronicComponentsTypes(int SubCategoryId)
         {
-            var result = _IECInductorsTransformersAndCoilsInterfaceRepo.GetIECInductorsTransformersAndCoils();
-            var final = result.Select(c => new IECInductorsTransformersAndCoilsDto
+            var result = _IECOptoelectronicComponentsInterfaceRepo.GetIECOptoelectronicComponentsTypes(SubCategoryId);
+            var final = result.Select(c => new IECOptoelectronicComponentsTypesDto
             {
-                Trid = c.Trid,
-                TransformerType = c.TransformerType
+                TypeId = c.TypeId,
+                TypeName = c.TypeName,
             }).ToList();
             return final;
-            //throw new NotImplementedException();
-        }
-
-        public List<IECOptoelectronicComponents> GetIECOptoelectronicComponents()
-        {
-            var result = _IECOptoelectronicComponentsInterfaceRepo.GetIECOptoelectronicComponents();
-            return result;
             // throw new NotImplementedException();
         }
 
-        public async Task<List<IECOptoelectronicComponentsSubCategoryDto>> GetIECOptoelectronicComponentsSubCategory(int SubCategoryId)
+        public async Task<List<IECOptoelectronicComponentsSubCategoryDto>> GetIECOptoelectronicComponentsSubCategory()
         {
-            var result = await _IECOptoelectronicComponentsInterfaceRepo.GetIECOptoelectronicComponentsSubCategory(SubCategoryId);
+            var result = await _IECOptoelectronicComponentsInterfaceRepo.GetIECOptoelectronicComponentsSubCategory();
             var final = result.Select(c => new IECOptoelectronicComponentsSubCategoryDto
             {
-                Trid = c.Trid,
-                OptoelectronicComponentsSubCategory = c.OptoelectronicComponentsSubCategory,
+                SubCategoryId = c.SubCategoryId,
+                SubCategory = c.SubCategory,
             }).ToList();
             return final;
 
@@ -430,24 +386,21 @@ namespace MTS_BAL.Services
             {
                 Trid = x.Trid,
                 PROJECTID= x.PROJECTID,
-                WBS=x.WBS,
-                TransformerTypeId=Convert.ToInt32(x.TransformerTypeId),
-                OperatingFrequencyMHz=Convert.ToDouble(x.OperatingFrequencyMHz),
-                MaximumOperatingFrequencyMHz =Convert.ToDouble(x.MaximumOperatingFrequencyMHz),
-                WorstCasePowerDissipationAtMaximumFrequencyW= Convert.ToDouble(x.WorstCasePowerDissipationAtMaximumFrequencyW),
-                MaximumSupplyCurrentA= Convert.ToDouble(x.MaximumSupplyCurrentA),
-                NominalVoltage= Convert.ToDouble(x.NominalVoltage),
-                ThermalResistance= Convert.ToDouble(x.ThermalResistance),
+                WBS=x.WBS ?? string.Empty,
+                SubCategoryId=Convert.ToInt32(x.SubCategoryId),
+                TypeId=Convert.ToInt32(x.TypeId),
+                DeltaT =Convert.ToDouble(x.DeltaT),
                 AmbientTemperature = Convert.ToDouble(x.AmbientTemperature),
                 Lambda= Convert.ToDouble(x.Lambda),
                 LambdaRef = Convert.ToDouble(x.LambdaRef),
+                ThetaOp = Convert.ToDouble(x.ThetaOp),
+                ThetaRef = Convert.ToDouble(x.ThetaRef),
                 PieT = Convert.ToDouble(x.PieT),
                 CreatedDate=Convert.ToDateTime(x.CreatedDate),
                 UpdateDate=Convert.ToDateTime(x.UpdateDate),
                 USERIDZU=x.USERIDZU
             }).ToList();
             return final;
-           // throw new NotImplementedException();
         }
 
         public async Task<bool> SaveInductorsTransformersAndCoils(IECPreductionInductorsTransformersAndCoilsDto preduction)
@@ -543,6 +496,30 @@ namespace MTS_BAL.Services
         {
             var result = await _IECSwitchesAndPushButtonsForLowElectricalStressInterfaceRepo.DeleteSwitchesAndPushButtonsForLowElectricalStress(Trid);
             return result;
+            //throw new NotImplementedException();
+        }
+
+        public List<IECInductorsTransformersAndCoilsSubCategoryDto> GetIECInductorsTransformersAndCoilsSubCategory()
+        {
+            var result = _IECInductorsTransformersAndCoilsInterfaceRepo.GetIECInductorsTransformersAndCoilsSubCategory();
+            var final = result.Select(c => new IECInductorsTransformersAndCoilsSubCategoryDto
+            {
+                SubCategoryId = c.SubCategoryId,
+                SubCategoryName = c.SubCategoryName
+            }).ToList();
+            return final;
+            //throw new NotImplementedException();
+        }
+
+        public List<IECInductorsTransformersAndCoilsTypesDto> GetIECInductorsTransformersAndCoilsType(int SubCategoryId)
+        {
+            var result = _IECInductorsTransformersAndCoilsInterfaceRepo.GetIECInductorsTransformersAndCoilsType(SubCategoryId);
+            var final = result.Select(c => new IECInductorsTransformersAndCoilsTypesDto
+            {
+                TypeId = c.TypeId,
+                TypeName = c.TypeName
+            }).ToList();
+            return final;
             //throw new NotImplementedException();
         }
     }

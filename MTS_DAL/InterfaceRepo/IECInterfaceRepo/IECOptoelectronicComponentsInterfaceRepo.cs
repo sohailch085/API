@@ -8,20 +8,19 @@ namespace MTS_DAL.InterfaceRepo.IECInterfaceRepo
     public interface IECOptoelectronicComponentsInterfaceRepo
     {
         List<IECConstantsForTemperatureDependenceOfOptoelectronicComponents> GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents();
-        List<IECOptoelectronicComponents> GetIECOptoelectronicComponents();
-        Task<List<IECOptoelectronicComponentsSubCategory>> GetIECOptoelectronicComponentsSubCategory(int SubCategoryId);
+        List<IECOptoelectronicComponentsTypes> GetIECOptoelectronicComponentsTypes(int SubCategoryId);
+        Task<List<IECOptoelectronicComponentsSubCategory>> GetIECOptoelectronicComponentsSubCategory();
         List<IECPredictionOptoelectronicComponent> GetPreductionOptoelectronicComponents();
         Task<List<IECOptoelectronicComponentsResponseDto>> ExecuteIECOptoelectronicComponents
            (
-               int OptoelectronicTypes,
-               int OptoelectronicComponentsSubCategory,
-               int ConstantsType,
+               int TypesId,
+               int SubCategoryId,
                double OperatingVoltageInV,
                double ReferenceVoltageInV,
                double RatedVoltageInV,
-               double OperatingFrequencyMHz,
-               double MaximumOperatingFrequencyMHz,
-               double WorstCasePowerDissipationAtMaximumFrequencyW,
+               double Fop,
+               double Fmax,
+               double Pfwc,
                double MaximumSupplyCurrentA,
                double NominalVoltage,
                double ThermalResistance,

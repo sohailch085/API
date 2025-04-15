@@ -15,39 +15,39 @@ namespace MTS.API.Controllers.IEC
         {
             _IECInterface = ecInterface;
         }
-        [HttpGet]
-        [Route("GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents")]
-        public JsonResult GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents()
-        {
-            try
-            {
-                var result = _IECInterface.GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents();
+        //[HttpGet]
+        //[Route("GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents")]
+        //public JsonResult GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents()
+        //{
+        //    try
+        //    {
+        //        var result = _IECInterface.GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents();
 
-                if (result == null || !result.Any())
-                {
-                    return new JsonResult(new { message = MessageInfo.Null });
-                }
-                return new JsonResult(new
-                {
-                    message = MessageInfo.Retrieved,
-                    data = result
-                });
-            }
-            catch (Exception ex)
-            {
-                return new JsonResult(new
-                {
-                    message = MessageInfo.Error + ex.Message
-                });
-            }
-        }
+        //        if (result == null || !result.Any())
+        //        {
+        //            return new JsonResult(new { message = MessageInfo.Null });
+        //        }
+        //        return new JsonResult(new
+        //        {
+        //            message = MessageInfo.Retrieved,
+        //            data = result
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new JsonResult(new
+        //        {
+        //            message = MessageInfo.Error + ex.Message
+        //        });
+        //    }
+        //}
         [HttpGet]
-        [Route("GetIECOptoelectronicComponents")]
-        public JsonResult GetIECOptoelectronicComponents()
+        [Route("GetIECOptoelectronicComponentsTypes")]
+        public JsonResult GetIECOptoelectronicComponentsTypes(int SubCategoryId)
         {
             try
             {
-                var result = _IECInterface.GetIECOptoelectronicComponents();
+                var result = _IECInterface.GetIECOptoelectronicComponentsTypes(SubCategoryId);
 
                 if (result == null || !result.Any())
                 {
@@ -69,11 +69,11 @@ namespace MTS.API.Controllers.IEC
         }
         [HttpGet]
         [Route("GetIECOptoelectronicComponentsSubCategory")]
-        public async Task<JsonResult> GetIECOptoelectronicComponentsSubCategory(int SubCategoryId)
+        public async Task<JsonResult> GetIECOptoelectronicComponentsSubCategory()
         {
             try
             {
-                var result = await _IECInterface.GetIECOptoelectronicComponentsSubCategory(SubCategoryId);
+                var result = await _IECInterface.GetIECOptoelectronicComponentsSubCategory();
 
                 if (result == null || !result.Any())
                 {
@@ -101,15 +101,14 @@ namespace MTS.API.Controllers.IEC
             {
                 var result = await _IECInterface.ExecuteIECOptoelectronicComponents
                     (
-                        request.OptoelectronicTypes,
-                        request.OptoelectronicComponentsSubCategory,
-                        request.ConstantsType,
+                        request.TypesId,
+                        request.SubCategoryId,
                         request.OperatingVoltageInV,
                         request.ReferenceVoltageInV,
                         request.RatedVoltageInV,
-                        request.OperatingFrequencyMHz,
-                        request.MaximumOperatingFrequencyMHz,
-                        request.WorstCasePowerDissipationAtMaximumFrequencyW,
+                        request.Fop,
+                        request.Fmax,
+                        request.Pfwc,
                         request.MaximumSupplyCurrentA,
                         request.NominalVoltage,
                         request.ThermalResistance,

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTS_DAL.Entities.IEC
 {
@@ -23,22 +17,18 @@ namespace MTS_DAL.Entities.IEC
         public string WBS { get; set; } = string.Empty;
         [Required]
         [ForeignKey("iECOptoelectronicComponents")]
-        public int OptoelectronicTypes { get; set; }
-        public IECOptoelectronicComponents iECOptoelectronicComponents { get; set; } = new IECOptoelectronicComponents();
+        public int? TypesId { get; set; }
+        public IECOptoelectronicComponentsTypes? iECOptoelectronicComponents { get; set; }// new IECOptoelectronicComponentsTypes();
         [Required]
         [ForeignKey("iECOptoelectronicComponentsSub")]
-        public int OptoelectronicComponentsSubCategory { get; set; }
+        public int? SubCategoryId { get; set; }
         public IECOptoelectronicComponentsSubCategory iECOptoelectronicComponentsSub { get; set; } = new IECOptoelectronicComponentsSubCategory();
-        [Required]
-        [ForeignKey("iECConstantsForTemperatureDependence")]
-        public int ConstantsTypeId { get; set; }
-        public IECConstantsForTemperatureDependenceOfOptoelectronicComponents iECConstantsForTemperatureDependence { get; set; } = new IECConstantsForTemperatureDependenceOfOptoelectronicComponents();
         public double? OperatingVoltageInV { get; set; }
         public double? ReferenceVoltageInV { get; set; }
         public double? RatedVoltageInV { get; set; }
-        public double? OperatingFrequencyMHz { get; set; }
-        public double? MaximumOperatingFrequencyMHz { get; set; }
-        public double? WorstCasePowerDissipationAtMaximumFrequencyW { get; set; }
+        public double? Fop { get; set; }
+        public double? Fmax { get; set; }
+        public double? Pfwc { get; set; }
         public double? MaximumSupplyCurrentA { get; set; }
         public double? NominalVoltage { get; set; }
         public double? ThermalResistance { get; set; }

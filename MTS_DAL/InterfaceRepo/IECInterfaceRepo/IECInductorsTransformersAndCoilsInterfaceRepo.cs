@@ -7,18 +7,15 @@ namespace MTS_DAL.InterfaceRepo.IECInterfaceRepo
 {
     public interface IECInductorsTransformersAndCoilsInterfaceRepo
     {
-        List<IECInductorsTransformersAndCoils> GetIECInductorsTransformersAndCoils();
+        List<IECInductorsTransformersAndCoilsSubCategory> GetIECInductorsTransformersAndCoilsSubCategory();
+        List<IECInductorsTransformersAndCoilsTypes> GetIECInductorsTransformersAndCoilsType(int SubCategoryId);
         Task<List<IECPredictionInductorsTransformersAndCoils>> GetIECPreductionInductorsTransformersAndCoils();
 
         Task<List<IECInductorsTransformersAndCoilsResponseDto>> ExecuteSPIECInductorsTransformersAndCoils
             (
-                int TransformersType,
-                double OperatingFrequencyMHz,
-                double MaximumOperatingFrequencyMHz,
-                double WorstCasePowerDissipationAtMaximumFrequencyW,
-                double MaximumSupplyCurrentA,
-                double NominalVoltage,
-                double ThermalResistance,
+                int SubCategoryId,
+                int TypeId,
+                double DeltaT,
                 double AmbientTemperature,
                 double LambdaRef
             );

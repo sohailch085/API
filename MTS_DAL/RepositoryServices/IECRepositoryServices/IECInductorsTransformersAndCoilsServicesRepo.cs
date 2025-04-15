@@ -46,16 +46,24 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
             // throw new NotImplementedException();
         }
 
-        public async Task<List<IECInductorsTransformersAndCoilsResponseDto>> ExecuteSPIECInductorsTransformersAndCoils(int TransformersType, double OperatingFrequencyMHz, double MaximumOperatingFrequencyMHz, double WorstCasePowerDissipationAtMaximumFrequencyW, double MaximumSupplyCurrentA, double NominalVoltage, double ThermalResistance, double AmbientTemperature, double LambdaRef)
+        public async Task<List<IECInductorsTransformersAndCoilsResponseDto>> ExecuteSPIECInductorsTransformersAndCoils(int SubCategoryId, int TypeId, double DeltaT, double AmbientTemperature, double LambdaRef)
         {
-            var resulta = await _dbcontextRepo.Database.SqlQueryRaw<IECInductorsTransformersAndCoilsResponseDto>("EXEC procedure_IEC_Inductors_transformers_and_coils " + TransformersType + ", " + OperatingFrequencyMHz + ", " + MaximumOperatingFrequencyMHz + ", " + WorstCasePowerDissipationAtMaximumFrequencyW + ", " + MaximumSupplyCurrentA + ", " + NominalVoltage + ", " + ThermalResistance + ", " + AmbientTemperature + ", " + LambdaRef + "").ToListAsync();
-            return resulta;
+            var result = await _dbcontextRepo.Database.SqlQueryRaw<IECInductorsTransformersAndCoilsResponseDto>("EXEC procedure_IEC_Inductors_transformers_and_coils " + SubCategoryId + ", " + TypeId + ", " + DeltaT + ", " + AmbientTemperature + ", " + LambdaRef + "").ToListAsync();
+            return result;
         }
 
-        public List<IECInductorsTransformersAndCoils> GetIECInductorsTransformersAndCoils()
+        public List<IECInductorsTransformersAndCoilsSubCategory> GetIECInductorsTransformersAndCoilsSubCategory()
         {
-            var result =  _dbcontextRepo.container.IECInductorsTransformersAndCoils.ToList();
+            var result = _dbcontextRepo.container.IECInductorsTransformersAndCoilsSubCategory.ToList();
             return result;
+            //throw new NotImplementedException();
+        }
+
+        public List<IECInductorsTransformersAndCoilsTypes> GetIECInductorsTransformersAndCoilsType(int SubCategoryId)
+        {
+            var result = _dbcontextRepo.container.IECInductorsTransformersAndCoilsTypes.Where(x => x.SubCategoryId == SubCategoryId).ToList();
+            return result;
+            //throw new NotImplementedException();
         }
 
         public async Task<List<IECPredictionInductorsTransformersAndCoils>> GetIECPreductionInductorsTransformersAndCoils()
@@ -78,16 +86,14 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
                 {
                     exists.PROJECTID = preduction.PROJECTID;
                     exists.WBS = preduction.WBS;
-                    exists.TransformerTypeId=preduction.TransformerTypeId;
-                    exists.OperatingFrequencyMHz=preduction.OperatingFrequencyMHz;
-                    exists.MaximumOperatingFrequencyMHz = preduction.MaximumOperatingFrequencyMHz;
-                    exists.WorstCasePowerDissipationAtMaximumFrequencyW = preduction.WorstCasePowerDissipationAtMaximumFrequencyW;
-                    exists.MaximumSupplyCurrentA = preduction.MaximumSupplyCurrentA;
-                    exists.NominalVoltage = preduction.NominalVoltage;
-                    exists.ThermalResistance = preduction.ThermalResistance;
+                    exists.SubCategoryId=preduction.SubCategoryId;
+                    exists.TypeId=preduction.TypeId;  
+                    exists.DeltaT = preduction.DeltaT;
                     exists.AmbientTemperature = preduction.AmbientTemperature;
                     exists.Lambda=preduction.Lambda;
                     exists.LambdaRef = preduction.LambdaRef;
+                    exists.ThetaOp=preduction.ThetaOp;
+                    exists.ThetaRef = preduction.ThetaRef;
                     exists.PieT = preduction.PieT;
                     exists.UpdateDate = DateTime.Now;
                     exists.USERIDZU = preduction.USERIDZU;
@@ -99,16 +105,14 @@ namespace MTS_DAL.RepositoryServices.IECRepositoryServices
                     {
                         PROJECTID = preduction.PROJECTID,
                         WBS = preduction.WBS,
-                        TransformerTypeId = preduction.TransformerTypeId,
-                        OperatingFrequencyMHz = preduction.OperatingFrequencyMHz,
-                        MaximumOperatingFrequencyMHz = preduction.MaximumOperatingFrequencyMHz,
-                        WorstCasePowerDissipationAtMaximumFrequencyW = preduction.WorstCasePowerDissipationAtMaximumFrequencyW,
-                        MaximumSupplyCurrentA = preduction.MaximumSupplyCurrentA,
-                        NominalVoltage = preduction.NominalVoltage,
-                        ThermalResistance = preduction.ThermalResistance,
+                        SubCategoryId = preduction.SubCategoryId,
+                        TypeId = preduction.TypeId,
+                       DeltaT = preduction.DeltaT,
                         AmbientTemperature = preduction.AmbientTemperature,
                         Lambda = preduction.Lambda,
                         LambdaRef = preduction.LambdaRef,
+                        ThetaOp = preduction.ThetaOp,
+                        ThetaRef = preduction.ThetaRef,
                         PieT = preduction.PieT,
                         CreatedDate = DateTime.Now,
                         USERIDZU = preduction.USERIDZU,

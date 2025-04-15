@@ -2,8 +2,8 @@
 {
     public class IECOptoelectronicComponentsSubCategoryDto
     {
-        public int Trid { get; set; }
+        public int SubCategoryId { get; set; }
 
-        public string OptoelectronicComponentsSubCategory { get; set; } = string.Empty;
+        public string SubCategory { get; set; } = string.Empty;
     }
 }

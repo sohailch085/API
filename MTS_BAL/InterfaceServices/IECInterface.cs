@@ -70,20 +70,19 @@ namespace MTS_BAL.InterfaceServices
         Task<bool> DeleteDiscreteSemiconductors(int Trid);
 
         List<IECConstantsForTemperatureDependenceOfOptoelectronicComponentsDto> GetIECConstantsForTemperatureDependenceOfOptoelectronicComponents();
-        List<IECOptoelectronicComponents> GetIECOptoelectronicComponents();
-        Task<List<IECOptoelectronicComponentsSubCategoryDto>> GetIECOptoelectronicComponentsSubCategory(int SubCategoryId);
+        List<IECOptoelectronicComponentsTypesDto> GetIECOptoelectronicComponentsTypes(int SubCategoryId);
+        Task<List<IECOptoelectronicComponentsSubCategoryDto>> GetIECOptoelectronicComponentsSubCategory();
         List<IECPreductionOptoelectronicComponentDto> GetPreductionOptoelectronicComponents();
         Task<List<IECOptoelectronicComponentsResponseDto>> ExecuteIECOptoelectronicComponents
          (
-             int OptoelectronicTypes,
-             int OptoelectronicComponentsSubCategory,
-             int ConstantsType,
+             int TypesId,
+             int SubCategoryId,
              double OperatingVoltageInV,
              double ReferenceVoltageInV,
              double RatedVoltageInV,
-             double OperatingFrequencyMHz,
-             double MaximumOperatingFrequencyMHz,
-             double WorstCasePowerDissipationAtMaximumFrequencyW,
+             double Fop,
+             double Fmax,
+             double Pfwc,
              double MaximumSupplyCurrentA,
              double NominalVoltage,
              double ThermalResistance,
@@ -108,17 +107,13 @@ namespace MTS_BAL.InterfaceServices
         Task<bool> SaveResistorsAndResistorNetworks(IECPreductionResistorsAndResistorNetworksDto preduction);
         Task<bool> DeleteResistorsAndResistorNetworks(int Trid);
 
-
-        List<IECInductorsTransformersAndCoilsDto> GetIECInductorsTransformersAndCoils();
+        List<IECInductorsTransformersAndCoilsSubCategoryDto> GetIECInductorsTransformersAndCoilsSubCategory();
+        List<IECInductorsTransformersAndCoilsTypesDto> GetIECInductorsTransformersAndCoilsType(int SubCategoryId);
         Task<List<IECInductorsTransformersAndCoilsResponseDto>> ExecuteSPIECInductorsTransformersAndCoils
             (
-                int TransformersType,
-                double OperatingFrequencyMHz,
-                double MaximumOperatingFrequencyMHz,
-                double WorstCasePowerDissipationAtMaximumFrequencyW,
-                double MaximumSupplyCurrentA,
-                double NominalVoltage,
-                double ThermalResistance,
+                int SubCategoryId,
+                int TypeId,               
+                double DeltaT,
                 double AmbientTemperature,
                 double LambdaRef
             );

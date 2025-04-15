@@ -138,11 +138,11 @@ namespace MTS_DAL.DBContextRepository
                 .HasForeignKey(d => d.CONSTANTSTYPEID)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<IECOptoelectronicComponentsSubCategory>()
+            modelBuilder.Entity<IECOptoelectronicComponentsTypes>()
                 .HasOne(p => p.iECOptoelectronicComponents)
                 .WithMany()
-                .HasForeignKey(p => p.ComponentsSubCategoryId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(p => p.SubCategoryId)
+                .OnDelete(DeleteBehavior.NoAction);                      
 
             modelBuilder.Entity<IECPredictionOptoelectronicComponent>()
                 .HasOne(p => p.rAMProjects)
@@ -153,13 +153,19 @@ namespace MTS_DAL.DBContextRepository
             modelBuilder.Entity<IECPredictionOptoelectronicComponent>()
                 .HasOne(p=> p.iECOptoelectronicComponentsSub)
                 .WithMany()
-                .HasForeignKey(p=> p.OptoelectronicComponentsSubCategory)
+                .HasForeignKey(p=> p.SubCategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
             
+            //modelBuilder.Entity<IECPredictionOptoelectronicComponent>()
+            //    .HasOne(p => p.iECConstantsForTemperatureDependence)
+            //    .WithMany()
+            //    .HasForeignKey(p => p.ConstantsTypeId)
+            //    .OnDelete(DeleteBehavior.NoAction);
+            
             modelBuilder.Entity<IECPredictionOptoelectronicComponent>()
-                .HasOne(p => p.iECConstantsForTemperatureDependence)
+                .HasOne(p => p.iECOptoelectronicComponents)
                 .WithMany()
-                .HasForeignKey(p => p.ConstantsTypeId)
+                .HasForeignKey(p => p.TypesId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<IECPredictionInductorsTransformersAndCoils>()
@@ -169,10 +175,16 @@ namespace MTS_DAL.DBContextRepository
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<IECPredictionInductorsTransformersAndCoils>()
-                .HasOne(p => p.iECInductorsTransformersAndCOils)
-                .WithMany()
-                .HasForeignKey(p => p.TransformerTypeId)
-                .OnDelete (DeleteBehavior.NoAction);
+              .HasOne(p => p.iECInductorsTransformersAndCoilsSubCategory)
+              .WithMany()
+              .HasForeignKey(p => p.SubCategoryId)
+              .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<IECPredictionInductorsTransformersAndCoils>()
+            .HasOne(p => p.iECInductorsTransformersAndCoilsTypes)
+            .WithMany()
+            .HasForeignKey(p => p.TypeId)
+            .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<IECPredictionIntegratedSemiconductorCircuits>()
                 .HasOne(p => p.RAMProject)
@@ -238,6 +250,27 @@ namespace MTS_DAL.DBContextRepository
             modelBuilder.Entity<IECSwitchesAndPushButtonsForLowElectricalStress>()
                .HasKey(p => p.Trid);
             
+            modelBuilder.Entity<IECInductorsTransformersAndCoilsSubCategory>()
+               .HasKey(p => p.SubCategoryId);
+
+            modelBuilder.Entity<IECConstantsForTemperatureDependenceOfOptoelectronicComponents>()
+                .HasKey(p => p.Trid);
+            
+            modelBuilder.Entity<IECConstantsForTemperatureDependence>()
+                .HasKey(p => p.Trid);
+            
+            modelBuilder.Entity<IECOptoelectronicComponentsTypes>()
+                .HasKey(p => p.TypeId);
+            
+            modelBuilder.Entity<IECOptoelectronicComponentsSubCategory>()
+                .HasKey(p => p.SubCategoryId);
+
+            modelBuilder.Entity<IECInductorsTransformersAndCoilsTypes>()
+                .HasOne(p => p.SubCategory)
+                .WithMany()
+                .HasForeignKey(p => p.SubCategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<R2Capacitor>()
                .HasKey(p => p.Trid);
 

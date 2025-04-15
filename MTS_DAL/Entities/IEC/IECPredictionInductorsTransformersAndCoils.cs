@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MTS_DAL.Entities.IEC
 {
-  public  class IECPredictionInductorsTransformersAndCoils
+    public class IECPredictionInductorsTransformersAndCoils
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,18 +18,18 @@ namespace MTS_DAL.Entities.IEC
         public RAMProjects Projects { get; set; } = new RAMProjects();
         [Column(TypeName = "varchar(30)")]
         public string? WBS { get; set; } = string.Empty;
-        [ForeignKey("iECInductorsTransformersAndCOils")]
-        public int? TransformerTypeId { get; set; }
-        public IECInductorsTransformersAndCoils iECInductorsTransformersAndCOils { get; set; } = new IECInductorsTransformersAndCoils();
-        public double? OperatingFrequencyMHz { get; set; }
-        public double? MaximumOperatingFrequencyMHz { get; set; }
-        public double? WorstCasePowerDissipationAtMaximumFrequencyW { get; set; }
-        public double? MaximumSupplyCurrentA { get; set; }
-        public double? NominalVoltage { get; set; }
-        public double? ThermalResistance { get; set; }
-        public double? AmbientTemperature { get; set; }
+        [ForeignKey("iECInductorsTransformersAndCoilsSubCategory")]
+        public int? SubCategoryId { get; set; }
+        public IECInductorsTransformersAndCoilsSubCategory iECInductorsTransformersAndCoilsSubCategory = new IECInductorsTransformersAndCoilsSubCategory();
+        [ForeignKey("iECInductorsTransformersAndCoilsTypes")]
+        public int? TypeId { get; set; }
+        public IECInductorsTransformersAndCoilsTypes iECInductorsTransformersAndCoilsTypes { get; set; } = new IECInductorsTransformersAndCoilsTypes();
+        public double? DeltaT { get; set; }
+        public double? AmbientTemperature { get; set; } 
         public double? Lambda { get; set; }
         public double? LambdaRef { get; set; }
+        public double? ThetaOp { get; set; }
+        public double? ThetaRef { get; set; }
         public double? PieT { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdateDate { get; set; }

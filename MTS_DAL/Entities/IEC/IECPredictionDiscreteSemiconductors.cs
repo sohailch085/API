@@ -28,12 +28,6 @@ namespace MTS_DAL.Entities.IEC
 
         public IECDiscreteSemiconductorsSubcategory iECDiscreteSemiconductorsSubcategory { get; set; } =new IECDiscreteSemiconductorsSubcategory();
 
-        //[Required]
-        //[ForeignKey("iECConstantsForTemperatureDependenceOfDiscreteSemiconductors")]
-        //public int? ConstantsTypeID { get; set; }
-
-        //public IECConstantsForTemperatureDependenceOfDiscreteSemiconductors iECConstantsForTemperatureDependenceOfDiscreteSemiconductors { get; set; } = new IECConstantsForTemperatureDependenceOfDiscreteSemiconductors();
-
         public double? OperatingVoltage { get; set; }
         public double? RatedVoltage { get; set; }
         public double? NominalVoltage { get; set; }

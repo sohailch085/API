@@ -7,13 +7,9 @@ namespace MTS_DAL.Entities.IEC
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Trid { get; set; }
-        [Required]
-        [ForeignKey("iECOptoelectronicComponents")]
-        public int ComponentsSubCategoryId { get; set; }
-        public IECOptoelectronicComponents iECOptoelectronicComponents { get; set; } = new IECOptoelectronicComponents();
-        public string OptoelectronicComponentsSubCategory { get; set; } = string.Empty;
-        public float ThetaRef { get; set; }
+        public int SubCategoryId { get; set; }      
+        public string SubCategory { get; set; } = string.Empty;
+       
         
     }
 

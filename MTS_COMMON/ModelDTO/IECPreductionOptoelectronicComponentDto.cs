@@ -13,15 +13,15 @@ namespace MTS_COMMON.ModelDTO
         public long Trid { get; set; } = 0;
         public long PROJECTid { get; set; }
         public string WBS { get; set; } = string.Empty;
-        public int OptoelectronicTypes { get; set; }
-        public int OptoelectronicComponentsSubCategory { get; set; }
+        public int TypesId { get; set; }
+        public int SubCategoryId { get; set; }
         public int ConstantsTypeId { get; set; }
         public double OperatingVoltageInV { get; set; }
         public double ReferenceVoltageInV { get; set; }
         public double RatedVoltageInV { get; set; }
-        public double OperatingFrequencyMHz { get; set; }
-        public double MaximumOperatingFrequencyMHz { get; set; }
-        public double WorstCasePowerDissipationAtMaximumFrequencyW { get; set; }
+        public double Fop { get; set; }
+        public double Fmax { get; set; }
+        public double Pfwc { get; set; }
         public double MaximumSupplyCurrentA { get; set; }
         public double NominalVoltage { get; set; }
         public double ThermalResistance { get; set; }
